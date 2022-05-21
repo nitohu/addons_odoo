@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="idea_idea_list" model="ir.ui.view">
+        <field name="name">List of ideas</field>
+        <field name="model">idea.idea</field>
+        <field name="arch" type="xml">
+            <tree string="Ideas">
+                <field name="name" />
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                <field name="category_id" />
+                <field name="project_id" />
+                <field name="user_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="idea_idea_form" model="ir.ui.view">
+        <field name="name">Edit Idea</field>
+        <field name="model">idea.idea</field>
+        <field name="arch" type="xml">
+            <form string="Edit Idea">
+                <sheet>
+                    <field name="active" invisible="1" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="project_id" />
+                            <field name="user_id" attrs="{'readonly': True}" />
+                        </group>
+                        <group>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                            <field name="category_id" />
+                            <field name="write_date" attrs="{'readonly': True}" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="idea_idea_search" model="ir.ui.view">
+        <field name="name">Search ideas</field>
+        <field name="model">idea.idea</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Search fields -->
+                <field name="name" />
+                <field name="project_id" />
+                <field name="category_id" />
+
+                <!-- Filters -->
+                <filter string="Archived" name="active" domain="[('active', '=', False)]" />
+
+                <!-- Group By -->
+                <group expand="0" string="Group By">
+                    <filter string="Project" name="project_id" context="{'group_by': 'project_id'}" />
+                    <filter string="Category" name="category_id" context="{'group_by': 'category_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="idea_idea_action" model="ir.actions.act_window">
+        <field name="name">Ideas</field>
+        <field name="res_model">idea.idea</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="idea_idea_menu"
+        name="Ideas"
+        parent="idea_manager_root_menu"
+        action="idea_idea_action"
+        groups="idea_manager.group_idea_manager_user" />
+
+</odoo>

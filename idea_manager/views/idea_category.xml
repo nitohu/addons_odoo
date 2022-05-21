@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="idea_categories_form" model="ir.ui.view">
+        <field name="name">Edit Idea Categories</field>
+        <field name="model">idea.category</field>
+        <field name="arch" type="xml">
+            <form string="Edit Idea Categories">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="sequence" />
+                            <field name="idea_ids" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="idea_categories_tree" model="ir.ui.view">
+        <field name="name">Idea Categories Overview</field>
+        <field name="model">idea.category</field>
+        <field name="arch" type="xml">
+            <tree string="Idea Categories Overview" editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="idea_count" />
+                <field name="user_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="idea_categories_action" model="ir.actions.act_window">
+        <field name="name">Idea Categories</field>
+        <field name="res_model">idea.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="idea_categories_menu"
+        name="Categories"
+        parent="idea_manager_edit_menu"
+        action="idea_categories_action"
+        groups="idea_manager.group_idea_manager_user" />
+</odoo>

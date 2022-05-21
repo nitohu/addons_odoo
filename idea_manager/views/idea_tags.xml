@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="idea_tags_form" model="ir.ui.view">
+        <field name="name">Edit Idea Tags</field>
+        <field name="model">idea.tag</field>
+        <field name="arch" type="xml">
+            <form string="Edit Idea Tags">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="color" widget="color_picker" options="{'color_field': 'color'}" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="idea_tags_tree" model="ir.ui.view">
+        <field name="name">Idea Tags Overview</field>
+        <field name="model">idea.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Idea Tags Overview" editable="bottom">
+                <field name="name" />
+                <field name="color" widget="color_picker" options="{'color_field': 'color'}" />
+                <field name="user_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="idea_tags_action" model="ir.actions.act_window">
+        <field name="name">Idea Tags</field>
+        <field name="res_model">idea.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="idea_tag_menu"
+        name="Tags"
+        parent="idea_manager_edit_menu"
+        action="idea_tags_action"
+        groups="idea_manager.group_idea_manager_user" />
+</odoo>
