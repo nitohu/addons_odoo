@@ -9,6 +9,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="active" invisible="1" />
                             <field name="name" />
                             <field name="short_desc" />
                             <field name="sequence" />
@@ -32,6 +33,22 @@
                 <field name="idea_count" />
                 <field name="user_id" attrs="{'readonly': True}" />
             </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="idea_categories_search" model="ir.ui.view">
+        <field name="name">Search ideas</field>
+        <field name="model">idea.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Search fields -->
+                <field name="name" />
+                <field name="short_desc" />
+
+                <!-- Filters -->
+                <filter string="Archived" name="active" domain="[('active', '=', False)]" />
+            </search>
         </field>
     </record>
 

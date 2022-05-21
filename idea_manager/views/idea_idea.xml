@@ -6,6 +6,7 @@
         <field name="model">idea.idea</field>
         <field name="arch" type="xml">
             <tree string="Ideas">
+                <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
                 <field name="category_id" />

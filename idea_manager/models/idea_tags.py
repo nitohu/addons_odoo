@@ -7,6 +7,13 @@ _logger = logging.getLogger(__name__)
 class IdeaTags(models.Model):
     _name = "idea.tag"
 
+    active = fields.Boolean(
+        default=True,
+    )
+    sequence = fields.Integer(
+        string="Sequence",
+        default=10,
+    )
     name = fields.Char(
         string="Tag Name",
         required=True,

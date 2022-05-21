@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <form string="Edit Idea Tags">
                 <sheet>
+                    <field name="active" invisible="1" />
                     <group>
                         <group>
                             <field name="name" />
@@ -26,10 +27,26 @@
         <field name="model">idea.tag</field>
         <field name="arch" type="xml">
             <tree string="Idea Tags Overview" editable="bottom">
+                <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="color" widget="color_picker" options="{'color_field': 'color'}" />
                 <field name="user_id" />
             </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="idea_tags_search" model="ir.ui.view">
+        <field name="name">Search ideas</field>
+        <field name="model">idea.tag</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Search fields -->
+                <field name="name" />
+
+                <!-- Filters -->
+                <filter string="Archived" name="active" domain="[('active', '=', False)]" />
+            </search>
         </field>
     </record>
 

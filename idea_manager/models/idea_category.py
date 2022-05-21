@@ -5,11 +5,17 @@ class IdeaCategory(models.Model):
     _name = "idea.category"
     _order = "sequence, id"
 
+    active = fields.Boolean(
+        default=True,
+    )
+    sequence = fields.Integer(
+        string="Sequence",
+        default=10
+    )
     name = fields.Char(
         string="Name",
         required=True,
     )
-    sequence = fields.Integer()
     short_desc = fields.Char(
         string="Short Description",
     )

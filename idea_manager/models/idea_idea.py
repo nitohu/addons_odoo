@@ -3,9 +3,14 @@ from odoo import models, fields
 
 class IdeaIdea(models.Model):
     _name = "idea.idea"
+    _order = "sequence, id"
 
     active = fields.Boolean(
         default=True
+    )
+    sequence = fields.Integer(
+        string="Sequence",
+        default=10,
     )
     name = fields.Char(
         string="Title",
