@@ -10,6 +10,9 @@ class IdeaCategory(models.Model):
         required=True,
     )
     sequence = fields.Integer()
+    short_desc = fields.Char(
+        string="Short Description",
+    )
     idea_ids = fields.One2many(
         string="Ideas",
         comodel_name="idea.idea",
