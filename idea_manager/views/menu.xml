@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <menuitem id="idea_manager_root_menu" name="Ideas" groups="idea_manager.group_idea_manager_user" />
+    <menuitem id="idea_manager_root_menu" name="Ideas" groups="idea_manager.group_idea_manager_user" web_icon="idea_manager,static/description/icon.png" />
     <menuitem id="idea_manager_edit_menu" name="Edit" sequence="20" parent="idea_manager_root_menu" />
 </odoo>
