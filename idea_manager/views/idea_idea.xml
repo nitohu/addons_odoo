@@ -22,6 +22,9 @@
         <field name="model">idea.idea</field>
         <field name="arch" type="xml">
             <form string="Edit Idea">
+                <header>
+                    <button name="action_convert_task" string="Convert to Task" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('project_id', '=', False), ('task_id', '!=', False)]}" />
+                </header>
                 <sheet>
                     <field name="active" invisible="1" />
                     <div class="oe_title">
@@ -37,12 +40,17 @@
                         <group>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
                             <field name="category_id" />
-                            <field name="write_date" attrs="{'readonly': True}" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Description">
                             <field name="description" />
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="task_id" />
+                                <field name="write_date" attrs="{'readonly': True}" />
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, _
+from odoo.exceptions import ValidationError
 
 
 class IdeaIdea(models.Model):
@@ -32,6 +33,11 @@ class IdeaIdea(models.Model):
         description="Project linked to the idea",
         comodel_name="project.project",
     )
+    task_id = fields.Many2one(
+        string="Linked Task",
+        description="Created task from idea",
+        comodel_name="project.task",
+    )
 
     def _get_current_user(self):
         return self.env.user
@@ -43,3 +49,24 @@ class IdeaIdea(models.Model):
         required=True,
     )
 
+    def action_convert_task(self):
+        self.ensure_one()
+        rec = {
+            "name": self.name,
+            "description": self.description,
+            "user_ids": [self.user_id.id],
+        }
+        if not self.project_id:
+            # TODO: Open Dialog where user can choose a project
+            raise ValidationError(_("Please link this idea to a Project."))
+        rec["project_id"] = self.project_id.id
+        task = self.env["project.task"].create(rec)
+        self.task_id = task
+        self.active = False
+        return {
+            "name": task.name,
+            "type": "ir.actions.act_window",
+            "res_model": "project.task",
+            "view_mode": "form",
+            "res_id": task.id
+        }
