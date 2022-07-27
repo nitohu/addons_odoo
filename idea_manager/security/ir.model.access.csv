@@ -1,4 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_idea_idea,idea.idea,model_idea_idea,idea_manager.group_idea_manager_admin,1,1,1,1
 access_idea_idea,idea.idea,model_idea_idea,idea_manager.group_idea_manager_user,1,1,1,1
+access_idea_tags,idea.tag,model_idea_tag,idea_manager.group_idea_manager_admin,1,1,1,1
 access_idea_tags,idea.tag,model_idea_tag,idea_manager.group_idea_manager_user,1,1,1,1
+access_idea_category,idea.category,model_idea_category,idea_manager.group_idea_manager_admin,1,1,1,1
 access_idea_category,idea.category,model_idea_category,idea_manager.group_idea_manager_user,1,1,1,1

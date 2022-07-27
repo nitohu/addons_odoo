@@ -57,6 +57,7 @@
         <field name="name">Idea Categories</field>
         <field name="res_model">idea.category</field>
         <field name="view_mode">tree,form</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
     </record>
 
     <!-- Menu Item -->
