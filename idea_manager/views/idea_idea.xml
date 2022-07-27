@@ -23,6 +23,7 @@
         <field name="arch" type="xml">
             <form string="Edit Idea">
                 <header>
+                    <button name="action_convert_project" string="Convert to Project" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('project_id', '!=', False), ('task_id', '!=', False)]}" />
                     <button name="action_convert_task" string="Convert to Task" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('project_id', '=', False), ('task_id', '!=', False)]}" />
                 </header>
                 <sheet>

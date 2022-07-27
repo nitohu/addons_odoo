@@ -54,6 +54,24 @@ class IdeaIdea(models.Model):
         required=True,
     )
 
+    def action_convert_project(self):
+        self.ensure_one()
+        rec = {
+            "name": self.name,
+            "description": self.description,
+            "user_id": self.user_id.id
+        }
+        project = self.env["project.project"].create(rec)
+        self.project_id = project.id
+        self.active = False
+        return {
+            "name": project.name,
+            "type": "ir.actions.act_window",
+            "res_model": "project.project",
+            "view_mode": "form",
+            "res_id": project.id
+        }
+
     def action_convert_task(self):
         self.ensure_one()
         rec = {
