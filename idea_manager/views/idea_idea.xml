@@ -75,7 +75,7 @@
                 <field name="category_id" />
 
                 <!-- Filters -->
-                <filter string="Archived" name="active" domain="[('active', '=', False)]" />
+                <filter string="Archived" name="filter_active" domain="[('active', '=', False)]" />
 
                 <!-- Group By -->
                 <group expand="0" string="Group By">
@@ -87,13 +87,25 @@
     </record>
 
     <!-- Action -->
+    <record id="idea_idea_all_action" model="ir.actions.act_window">
+        <field name="name">All Ideas</field>
+        <field name="res_model">idea.idea</field>
+        <field name="view_mode">tree,form</field>
+    </record>
     <record id="idea_idea_action" model="ir.actions.act_window">
         <field name="name">Ideas</field>
         <field name="res_model">idea.idea</field>
         <field name="view_mode">tree,form</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
     </record>
 
-    <!-- Menu Item -->
+    <!-- Menu Items -->
+    <menuitem
+        id="idea_idea_menu_all"
+        name="All Ideas"
+        parent="idea_manager_root_menu"
+        action="idea_idea_all_action"
+        groups="idea_manager.group_idea_manager_admin" />
     <menuitem
         id="idea_idea_menu"
         name="Ideas"
