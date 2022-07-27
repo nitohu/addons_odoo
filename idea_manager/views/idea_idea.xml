@@ -12,6 +12,7 @@
                 <field name="category_id" />
                 <field name="project_id" />
                 <field name="user_id" />
+                <field name="write_date" />
             </tree>
         </field>
     </record>
@@ -41,6 +42,7 @@
                         <group>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
                             <field name="category_id" />
+                            <field name="public" />
                         </group>
                     </group>
                     <notebook>
@@ -98,8 +100,21 @@
         <field name="view_mode">tree,form</field>
         <field name="domain">[('user_id', '=', uid)]</field>
     </record>
+    <record id="idea_idea_public_action" model="ir.actions.act_window">
+        <field name="name">Public Ideas</field>
+        <field name="res_model">idea.idea</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('public', '=', True)]</field>
+        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+    </record>
 
     <!-- Menu Items -->
+    <menuitem
+        id="idea_idea_menu"
+        name="Ideas"
+        parent="idea_manager_root_menu"
+        action="idea_idea_action"
+        groups="idea_manager.group_idea_manager_user" />
     <menuitem
         id="idea_idea_menu_all"
         name="All Ideas"
@@ -107,10 +122,10 @@
         action="idea_idea_all_action"
         groups="idea_manager.group_idea_manager_admin" />
     <menuitem
-        id="idea_idea_menu"
-        name="Ideas"
+        id="idea_idea_menu_public"
+        name="Public Ideas"
         parent="idea_manager_root_menu"
-        action="idea_idea_action"
+        action="idea_idea_public_action"
         groups="idea_manager.group_idea_manager_user" />
-
+    
 </odoo>

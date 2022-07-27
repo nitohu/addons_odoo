@@ -19,6 +19,11 @@ class IdeaIdea(models.Model):
         required=True,
         tracking=True
     )
+    public = fields.Boolean(
+        string="Share Publically",
+        default=False,
+        tracking=True
+    )
     description = fields.Html(
         string="Description"
     )
