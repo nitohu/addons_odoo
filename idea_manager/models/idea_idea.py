@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 
 class IdeaIdea(models.Model):
     _name = "idea.idea"
+    _inherit = ["mail.thread"]
     _order = "sequence, id"
 
     active = fields.Boolean(
@@ -16,6 +17,7 @@ class IdeaIdea(models.Model):
     name = fields.Char(
         string="Title",
         required=True,
+        tracking=True
     )
     description = fields.Html(
         string="Description"
@@ -26,17 +28,20 @@ class IdeaIdea(models.Model):
     )
     category_id = fields.Many2one(
         string="Category",
-        comodel_name="idea.category"
+        comodel_name="idea.category",
+        tracking=True
     )
     project_id = fields.Many2one(
         string="Project",
         description="Project linked to the idea",
         comodel_name="project.project",
+        tracking=True
     )
     task_id = fields.Many2one(
         string="Linked Task",
         description="Created task from idea",
         comodel_name="project.task",
+        tracking=True
     )
 
     def _get_current_user(self):
