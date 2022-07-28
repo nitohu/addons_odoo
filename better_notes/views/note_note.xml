@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- <record id="view_note_note_tree_inherited" model="ir.ui.view">
+        <field name="name">note.note.tree.inherited</field>
+        <field name="model">note.note</field>
+        <field name="inherit_id" ref="note.view_note_note_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='open']" position="replace" />
+        </field>
+    </record> -->
+
+    <record id="view_note_note_form" model="ir.ui.view">
+        <field name="name">better.note.form.inherited</field>
+        <field name="model">note.note</field>
+        <field name="inherit_id" ref="note.view_note_note_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='memo']" position="after">
+                <group class="pl-5 pr-5">
+                    <group>
+                        <field name="public" />
+                        <field name="is_secured" attrs="{'invisible': [('public', '=', False)]}" />
+                        <field name="is_destroyed" attrs="{'invisible': ['|', ('is_secured', '=', False), ('public', '=', False)]}" />
+                    </group>
+                    <group>
+                        <field name="new_password" attrs="{'invisible': ['|', ('is_secured', '=', False), ('public', '=', False)]}" />
+                        <field name="password" attrs="{'invisible': [('is_secured', '=', False)]}" readonly="1" password="1" />
+                    </group>
+                </group>
+                <group class="pb-4 pl-5 pr-5">
+                    <group>
+                        <field name="href" />
+                    </group>
+                    <group attrs="{'invisible': ['|', ('public', '=', False), '|', ('is_secured', '=', False), ('is_destroyed', '=', False)]}">
+                        <field name="destroy_method" />
+                        <field name="destroy_max_count" attrs="{'invisible': [('destroy_method', '!=', 'x')]}" />
+                        <field name="destroy_timestamp" attrs="{'invisible': [('destroy_method', '!=', 'time')]}" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

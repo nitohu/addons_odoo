@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="better_notes.public_notes_template" inherit_id="web.layout" primary="True" name="Public Notes base template">
+        <!-- Head -->
+        <xpath expr="//head" position="inside">
+            <t t-call-assets="web.assets_frontend" t-js="false" />
+        </xpath>
+        <!-- Main Body -->
+        <xpath expr="//t[@t-out='0']" position="replace">
+            <div class="container mt64">
+                <t t-out="0" />
+            </div>
+        </xpath>
+    </template>
+
+    <template id="better_notes.public_note" name="Public Note">
+        <t t-call="better_notes.public_notes_template">
+            <t t-if="is_secured and not authorized">
+                <h2>This note is password secured.</h2>
+                <br />
+                <form method="POST">
+                    <input type="password" name="password" placeholder="Password..." />
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="submit" value="Submit" />
+                </form>
+            </t>
+            <t t-else="" t-out="content" />
+        </t>
+    </template>
+
+    <template id="better_notes.note_not_found" name="Note not found">
+        <t t-call="better_notes.public_notes_template">
+            <h1>No note found!</h1>
+        </t>
+    </template>
+</odoo>
