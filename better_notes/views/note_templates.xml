@@ -28,9 +28,9 @@
         </t>
     </template>
 
-    <!-- <template id="better_notes.secured_note" name="Secured Note">
+    <template id="better_notes.note_not_found" name="Note not found">
         <t t-call="better_notes.public_notes_template">
-            <t t-raw="content" />
+            <h1>No note found!</h1>
         </t>
-    </template> -->
+    </template>
 </odoo>

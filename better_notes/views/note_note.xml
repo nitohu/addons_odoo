@@ -19,10 +19,14 @@
                     <group>
                         <field name="public" />
                         <field name="is_secured" />
+                        <field name="is_destroyed" attrs="{'invisible': [('is_secured', '=', False)]}" />
                     </group>
                     <group>
                         <field name="new_password" attrs="{'invisible': [('is_secured', '=', False)]}" />
                         <field name="password" attrs="{'invisible': [('is_secured', '=', False)]}" readonly="1" password="1" />
+                        <field name="destroy_method" attrs="{'invisible': ['|', ('is_secured', '=', False), ('is_destroyed', '=', False)]}" />
+                        <field name="destroy_max_count" attrs="{'invisible': ['|', ('destroy_method', '!=', 'x'), '|', ('is_secured', '=', False), ('is_destroyed', '=', False)]}" />
+                        <field name="destroy_timestamp" attrs="{'invisible': ['|', ('destroy_method', '!=', 'time'), '|', ('is_secured', '=', False), ('is_destroyed', '=', False)]}" />
                         <field name="href" />
                     </group>
                 </group>

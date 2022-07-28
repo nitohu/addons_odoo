@@ -1,6 +1,6 @@
 {
     'name': 'Better Notes',
-    'version': '15.0.0.0.1',
+    'version': '15.0.1.0.0',
     'summary': 'Better Notes - share notes with others, secure them with password and delete them after some time.',
     'description': '''
 Better Notes
@@ -18,8 +18,9 @@ Share notes with others, secure them with password and delete them after some ti
     ],
     'data': [
         "views/note_note.xml",
+        "views/note_templates.xml",
 
-        "views/note_templates.xml"
+        "data/ir_cron.xml"
     ],
     'installable': True,
     'auto_install': False,
