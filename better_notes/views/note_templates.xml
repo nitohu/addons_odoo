@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="better_notes.public_note" inherit_id="web.layout" primary="True" name="Public Note">
+        <!-- Head -->
+        <xpath expr="//head" position="inside">
+            <t t-call-assets="web.assets_frontend" t-js="false" />
+        </xpath>
+        <!-- Main Body -->
+        <xpath expr="//t[@t-out='0']" position="replace">
+            <div class="container mt64" t-raw="content"></div>
+        </xpath>
+    </template>
+</odoo>

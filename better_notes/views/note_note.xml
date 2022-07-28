@@ -21,6 +21,7 @@
                     </group>
                     <group>
                         <field name="identifier" />
+                        <field name="href" />
                     </group>
                 </group>
             </xpath>

@@ -14,9 +14,12 @@ Share notes with others, secure them with password and delete them after some ti
     'license': 'AGPL-3',
     'depends': [
         'note',
+        'web'
     ],
     'data': [
         "views/note_note.xml",
+
+        "views/note_templates.xml"
     ],
     'installable': True,
     'auto_install': False,
