@@ -1,4 +1,4 @@
-from odoo import models, fields, _
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
@@ -38,13 +38,13 @@ class IdeaIdea(models.Model):
     )
     project_id = fields.Many2one(
         string="Project",
-        description="Project linked to the idea",
+        help="Project linked to the idea",
         comodel_name="project.project",
         tracking=True
     )
     task_id = fields.Many2one(
         string="Linked Task",
-        description="Created task from idea",
+        help="Created task from idea",
         comodel_name="project.task",
         tracking=True
     )
@@ -58,6 +58,18 @@ class IdeaIdea(models.Model):
         default=_get_current_user,
         required=True,
     )
+    partner_id = fields.Many2one(
+        string="Related Partner",
+        comodel_name="res.partner",
+        compute="_compute_partner",
+    )
+
+    @api.depends("user_id")
+    def _compute_partner(self):
+        for rec in self:
+            if rec.user_id:
+                rec.partner_id = rec.user_id.partner_id
+
 
     def action_convert_project(self):
         self.ensure_one()
