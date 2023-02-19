@@ -11,14 +11,6 @@
         Groups
     -->
 
-    <!-- Admin Group -->
-    <record model="res.groups" id="group_idea_manager_admin">
-        <field name="name">Administrator</field>
-        <field name="category_id" ref="module_category_idea_manager" />
-        <field name="implied_ids" eval="[(4, ref('group_idea_manager_user'))]" />
-        <field name="comment">The admin of the Idea Manager will be able to administrate the module.</field>
-    </record>
-
     <!-- User Group -->
     <record model="res.groups" id="group_idea_manager_user">
         <field name="name">User</field>
@@ -27,6 +19,14 @@
         <field name="comment">The user of the Idea Manager will be able to use the module.</field>
     </record>
 
+    <!-- Admin Group -->
+    <record model="res.groups" id="group_idea_manager_admin">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="module_category_idea_manager" />
+        <field name="implied_ids" eval="[(4, ref('group_idea_manager_user'))]" />
+        <field name="comment">The admin of the Idea Manager will be able to administrate the module.</field>
+    </record>
+    
     <!-- 
         Rules
     -->
