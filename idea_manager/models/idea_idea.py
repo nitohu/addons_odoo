@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class IdeaIdea(models.Model):
@@ -70,9 +70,22 @@ class IdeaIdea(models.Model):
             if rec.user_id:
                 rec.partner_id = rec.user_id.partner_id
 
+    def action_archive(self):
+        for rec in self:
+            if self.env.user.id != rec.user_id.id:
+                raise UserError(_("Only the owner is allowed to archive this record."))
+            rec.active = False
+
+    def action_unarchive(self):
+        for rec in self:
+            if self.env.user.id != rec.user_id.id:
+                raise UserError(_("Only the owner is allowed to unarchive this record."))
+            rec.active = True
 
     def action_convert_project(self):
         self.ensure_one()
+        if self.env.user.id != self.user_id.id:
+            raise UserError(_("Only the owner is allowed to update this record."))
         rec = {
             "name": self.name,
             "description": self.description,

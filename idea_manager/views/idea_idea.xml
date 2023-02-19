@@ -24,8 +24,8 @@
         <field name="arch" type="xml">
             <form string="Edit Idea">
                 <header>
-                    <button name="action_convert_project" string="Convert to Project" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('project_id', '!=', False), ('task_id', '!=', False)]}" />
-                    <button name="action_convert_task" string="Convert to Task" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('project_id', '=', False), ('task_id', '!=', False)]}" />
+                    <button name="action_convert_project" string="Convert to Project" type="object" class="oe_highlight" attrs="{'invisible': &quot;['|', ('user_id', '!=', uid), '|', ('project_id', '!=', False), ('task_id', '!=', False)]&quot;}" />
+                    <button name="action_convert_task" string="Convert to Task" type="object" class="oe_highlight" attrs="{'invisible': &quot;['|', ('user_id', '!=', uid), '|', ('project_id', '=', False), ('task_id', '!=', False)]&quot;}" />
                 </header>
                 <sheet>
                     <field name="active" invisible="1" />

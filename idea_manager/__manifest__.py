@@ -1,6 +1,6 @@
 {
     'name': 'Idea Manager',
-    'version': '15.0.0.5.1',
+    'version': '15.0.0.5.2',
     'summary': 'Idea Manager',
     'description': '''Idea Manager''',
     'category': '',
