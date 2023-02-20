@@ -17,6 +17,40 @@
         </field>
     </record>
 
+    <!-- Kanban View -->
+    <record id="idea_idea_kanban" model="ir.ui.view">
+        <field name="name">Idea Kanban</field>
+        <field name="model">idea.idea</field>
+        <field name="arch" type="xml">
+            <kanban string="Ideas" default_group_by="category_id">
+                <field name="category_id" />
+                <field name="public" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click oe_kanban_content oe_kanban_card">
+                            <div class="o_kanban_record_title">
+                                <b><field name="name" /></b>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                                <t t-if="record.category_id.value">
+                                    <span>Category: <t t-out="record.category_id.value" /></span>
+                                    <br />
+                                </t>
+                                <t t-if="record.public.raw_value">
+                                    <span style="font-weight:bold;">Public</span>
+                                </t>
+                                <t t-else="">
+                                    <span style="font-weight:bold;">Private</span>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <!-- Form View -->
     <record id="idea_idea_form" model="ir.ui.view">
         <field name="name">Edit Idea</field>
@@ -100,7 +134,7 @@
     <record id="idea_idea_action" model="ir.actions.act_window">
         <field name="name">Ideas</field>
         <field name="res_model">idea.idea</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
         <field name="domain">[('user_id', '=', uid)]</field>
     </record>
     <record id="idea_idea_public_action" model="ir.actions.act_window">
