@@ -8,4 +8,5 @@ class ProjectProject(models.Model):
         string="Linked Ideas",
         comodel_name="idea.idea",
         inverse_name="project_id",
+        context={'active_test': False}
     )
