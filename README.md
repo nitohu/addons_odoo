@@ -6,7 +6,7 @@ This repository holds some custom developed Odoo addons. The module in this repo
 
 Name | Version | Status
 --- | --- | ---
-idea_manager | 15.0.0.5.0 | In Development
+idea_manager | 15.0.1.0.0 | Version 1 Released
 better_notes | 15.0.1.0.0 | Version 1 released
 
 ## Versioning
